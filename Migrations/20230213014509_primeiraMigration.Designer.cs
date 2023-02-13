@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevagramCSharp.Migrations
 {
     [DbContext(typeof(DevagramContext))]
-    [Migration("20230213010759_primeiraMigration")]
+    [Migration("20230213014509_primeiraMigration")]
     partial class primeiraMigration
     {
         /// <inheritdoc />

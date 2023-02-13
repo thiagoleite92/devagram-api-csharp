@@ -1,6 +1,8 @@
 using System.Text;
 using DevagramCSharp;
 using DevagramCSharp.Models;
+using DevagramCSharp.Repository;
+using DevagramCSharp.Repository.Impl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +30,8 @@ builder.Services.AddDbContext<DevagramContext>(option =>
 {
     option.UseSqlServer(connectionString);
 });
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepositoryImpl>();
 
 builder.Services.AddAuthentication(auth =>
     {
