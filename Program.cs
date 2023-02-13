@@ -1,6 +1,12 @@
 using System.Text;
 using DevagramCSharp;
+using DevagramCSharp.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +18,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionString = builder.Configuration.GetConnectionString("Default");
+
+
+
 var chaveJWT = Encoding.ASCII.GetBytes(ChaveJWT.ChaveSecreta);
+
+builder.Services.AddDbContext<DevagramContext>(option => 
+{
+    option.UseSqlServer(connectionString);
+});
 
 builder.Services.AddAuthentication(auth =>
     {

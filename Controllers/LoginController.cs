@@ -1,8 +1,11 @@
-﻿using DevagramCSharp.Dtos;
+﻿using System;
+using DevagramCSharp.Dtos;
 using DevagramCSharp.Models;
 using DevagramCSharp.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace DevagramCSharp.Controllers
 {

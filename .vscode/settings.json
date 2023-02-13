@@ -1,0 +1,34 @@
+{
+  "sqltools.connections": [
+    {
+      "mssqlOptions": {
+        "appName": "SQLTools",
+        "useUTC": true,
+        "encrypt": true
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 1433,
+      "driver": "MSSQL",
+      "name": "Teste",
+      "username": "sa",
+      "password": "Leite.tjs@gmail.com",
+      "database": "Devagram"
+    },
+    {
+      "mssqlOptions": {
+        "appName": "SQLTools",
+        "useUTC": true,
+        "encrypt": true
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 1433,
+      "driver": "MSSQL",
+      "name": "teste",
+      "database": "DevagramDb",
+      "username": "sa",
+      "password": "Leite.tjs@gmail.com"
+    }
+  ]
+}
