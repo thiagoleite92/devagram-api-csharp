@@ -16,28 +16,28 @@ namespace DevagramCSharp.Controllers
     public class UsuarioController : BaseController
     {
         public readonly ILogger<UsuarioController> _logger;
-        public readonly IUsuarioRepository _usuarioRepository; 
 
-        public UsuarioController(ILogger<UsuarioController> logger,  IUsuarioRepository usuarioRepository)
+        public UsuarioController(
+            ILogger<UsuarioController> logger,
+            IUsuarioRepository usuarioRepository) : base(usuarioRepository)
         {
             _logger = logger;
-            _usuarioRepository = usuarioRepository;
 
         }
 
         [HttpGet]
         public IActionResult ObterUsuario() 
         {
-
             try
             {
-            Usuario usuario = new Usuario()
-            {
-                Email = "thiago@email.com",
-                Nome = "Thiago",
-                Id = 100
-            };
-            return Ok(usuario);
+                 Usuario usuario = LerToken();
+
+
+                return Ok(new UsuarioRespostaDto
+                {
+                    Nome = usuario.Nome,
+                    Email = usuario.Email
+                });
             }
             catch (Exception e)
             {
