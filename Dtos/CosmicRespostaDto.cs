@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace DevagramCSharp.Dtos
 {
-    public class UsuarioRespostaDto
+    public class CosmicRespostaDto
     {
-        public string? Nome { get; set; }
-        public string? Email { get; set; }
+        public CosmicMediaDto? media { get; set; }
     }
 }

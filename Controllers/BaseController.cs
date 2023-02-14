@@ -20,7 +20,7 @@ namespace DevagramCSharp.Controllers
             _usuarioRepository = usuarioRepository;
         }
 
-        protected Usuario LerToken()
+        protected Usuario? LerToken()
         {
             var idUsuario = User.Claims.Where(c => c.Type  == ClaimTypes.Sid).Select(c => c.Value).FirstOrDefault();
 

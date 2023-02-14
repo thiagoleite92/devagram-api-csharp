@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DevagramCSharp.Dtos;
 using DevagramCSharp.Models;
 using DevagramCSharp.Repository;
+using DevagramCSharp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -52,25 +53,25 @@ namespace DevagramCSharp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult SalvarUsuario([FromBody] Usuario usuario)
+        public IActionResult SalvarUsuario([FromForm] UsuarioRequisicaoDto usuarioDto)
         {
             try
             {
-                if (usuario != null)
+                if (usuarioDto != null)
                 {
                     var erros = new List<string>();
 
-                    if(String.IsNullOrEmpty(usuario.Nome) || String.IsNullOrWhiteSpace(usuario.Nome))
+                    if(String.IsNullOrEmpty(usuarioDto.Nome) || String.IsNullOrWhiteSpace(usuarioDto.Nome))
                     {
                         erros.Add("Nome Inválido");
                     }
 
-                     if(String.IsNullOrEmpty(usuario.Email) || String.IsNullOrWhiteSpace(usuario.Email) || !usuario.Email.Contains("@"))
+                     if(String.IsNullOrEmpty(usuarioDto.Email) || String.IsNullOrWhiteSpace(usuarioDto.Email) || !usuarioDto.Email.Contains("@"))
                     {
                         erros.Add("Email Inválido");
                     }
 
-                     if(String.IsNullOrEmpty(usuario.Senha) || String.IsNullOrWhiteSpace(usuario.Senha))
+                     if(String.IsNullOrEmpty(usuarioDto.Senha) || String.IsNullOrWhiteSpace(usuarioDto.Senha))
                     {
                         erros.Add("Senha Inválida");
                     }
@@ -83,6 +84,19 @@ namespace DevagramCSharp.Controllers
                             Erros = erros
                         });
                     }
+
+
+                    CosmicService cosmicService = new CosmicService();
+
+                    Usuario usuario = new Usuario()
+                    {
+                        Email = usuarioDto.Email,
+                        Senha = usuarioDto.Senha,
+                        Nome = usuarioDto.Nome,
+                        FotoPerfil = "teste"
+                    };
+
+
 
                     usuario.Senha = Utils.MD5Utils.GerarHashMD5(usuario.Senha);
                     usuario.Email = usuario.Email.ToLower();

@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace DevagramCSharp.Dtos
 {
-    public class SalvarUsuarioDto
+    public class ImagemDto
     {
         public string? Nome { get; set; }
-        public string? Email { get; set; }
-        public string? Senha { get; set; }
-
+        public IFormFile? Imagem { get; set; }
     }
 }
